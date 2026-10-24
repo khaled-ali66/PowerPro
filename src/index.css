@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-text-primary font-sans antialiased;
+}
+
+@layer components {
+  .container-custom {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-all duration-200 ease-out-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/40 focus-visible:ring-offset-2;
+  }
+  .btn-primary {
+    @apply btn bg-brand-primary text-white shadow-soft hover:bg-brand-primaryHover hover:shadow-lg active:translate-y-[1px];
+  }
+  .btn-ghost {
+    @apply btn text-brand-navy hover:bg-brand-sky/60;
+  }
+  .section-padding {
+    @apply py-12 sm:py-16 lg:py-20;
+  }
+  .section-heading {
+    @apply text-center;
+  }
+  .section-eyebrow {
+    @apply mb-2 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.2em] text-brand-primary;
+  }
+  .section-title {
+    @apply font-display text-3xl font-bold tracking-tight text-brand-navy sm:text-4xl lg:text-5xl;
+  }
+  .section-subtitle {
+    @apply mt-4 max-w-2xl text-lg text-text-secondary;
+  }
+  .card {
+    @apply rounded-2xl bg-surface-card shadow-card ring-1 ring-black/5 transition-all duration-200 ease-out-soft hover:-translate-y-1 hover:shadow-soft;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
