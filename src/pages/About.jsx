@@ -2,13 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Section, SectionHeading } from '../components/ui/Section'
 import { products } from '../data/products'
-
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-60px' },
-  transition: { duration: 0.6, ease: [0.25, 0.8, 0.25, 1] },
-}
+import { fadeUp, fadeLeft, fadeRight } from '../lib/motion'
 
 export default function About() {
   return (
@@ -29,10 +23,10 @@ export default function About() {
           align="left"
         />
         <div className="mt-10 grid gap-10 lg:grid-cols-2 lg:items-center">
-          <motion.div {...fadeUp} className="overflow-hidden rounded-2xl shadow-card ring-1 ring-black/5">
+          <motion.div {...fadeLeft} className="overflow-hidden rounded-2xl shadow-card ring-1 ring-black/5">
             <img src="/assets/images/about-1.jpg" alt="Power Pro panels" className="h-full w-full object-cover" loading="lazy" />
           </motion.div>
-          <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.05 }}>
+          <motion.div {...fadeRight}>
             <h3 className="font-display text-2xl font-semibold text-brand-navy">Who we are</h3>
             <p className="mt-4 text-text-secondary">
               Power Pro Technology Electric excels in the production of low-voltage panels, ensuring top-notch quality and reliability for safe electrical management.
@@ -48,7 +42,7 @@ export default function About() {
       </Section>
       <Section className="pt-0">
         <div className="grid gap-6 lg:grid-cols-3">
-          <motion.article {...fadeUp} className="card overflow-hidden">
+          <motion.article {...fadeLeft} className="card overflow-hidden">
             <div className="relative aspect-[16/10] overflow-hidden">
               <img src="/assets/images/vision-1.jpg" alt="Our vision" className="h-full w-full object-cover" loading="lazy" />
             </div>
@@ -59,7 +53,7 @@ export default function About() {
               </p>
             </div>
           </motion.article>
-          <motion.article {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.05 }} className="card overflow-hidden">
+          <motion.article {...fadeUp} className="card overflow-hidden">
             <div className="relative aspect-[16/10] overflow-hidden">
               <img src="/assets/images/mission-1.jpg" alt="Our mission" className="h-full w-full object-cover" loading="lazy" />
             </div>
@@ -70,7 +64,7 @@ export default function About() {
               </p>
             </div>
           </motion.article>
-          <motion.article {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }} className="card overflow-hidden">
+          <motion.article {...fadeRight} className="card overflow-hidden">
             <div className="p-6">
               <h3 className="font-display text-xl font-semibold text-brand-navy">Commitment</h3>
               <p className="mt-3 text-text-secondary">

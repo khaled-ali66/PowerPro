@@ -4,13 +4,7 @@ import { ArrowRight, CheckCircle2, Settings, ShieldCheck, Mouse } from 'lucide-r
 import { Section, SectionHeading } from '../components/ui/Section'
 import { products } from '../data/products'
 import { siteInfo } from '../data/site'
-
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-80px' },
-  transition: { duration: 0.6, ease: [0.25, 0.8, 0.25, 1] },
-}
+import { fadeUp, fadeLeft, fadeRight, slideIn } from '../lib/motion'
 
 const serviceCards = [
   { id: 'busbar', title: 'Multifunctional Busbar Processing Machines', text: 'Advanced machines for precise and efficient busbar processing.', icon: Settings, href: '/services#busbar-processing' },
@@ -54,8 +48,8 @@ export default function Home() {
 
         <div className="container-custom relative flex min-h-[calc(100svh-72px)] flex-col justify-end pb-10 pt-12 lg:min-h-[calc(100svh-109px)] lg:justify-center lg:py-0">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -80 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: [0.25, 0.8, 0.25, 1] }}
             className="max-w-[620px]"
           >
@@ -94,7 +88,7 @@ export default function Home() {
       <section id="services" className="relative overflow-x-clip bg-[#F6F8FE] py-8 xl:py-[28px]">
         <div className="container-custom">
           <div className="grid gap-8 xl:grid-cols-[300px_minmax(0,1fr)_260px] xl:gap-0">
-            <div className="xl:pt-[6px]">
+            <motion.div {...fadeLeft} className="xl:pt-[6px]">
               <p className="flex items-center gap-3 text-[12px] font-semibold uppercase tracking-[0.25em] text-[#0B55F5]">
                 <span className="h-[2px] w-6 bg-[#0B55F5]" />
                 Our Services
@@ -105,13 +99,17 @@ export default function Home() {
               <p className="mt-4 max-w-[380px] text-[15px] leading-[1.6] text-[#4B5C7A]">
                 We provide integrated solutions for low-voltage systems, from advanced manufacturing to professional maintenance, ensuring efficiency, safety and long-term performance.
               </p>
-            </div>
+            </motion.div>
 
             <div className="grid gap-4 sm:grid-cols-3 xl:ml-10 xl:mr-2 xl:self-start">
-              {serviceCards.map((card) => {
+              {serviceCards.map((card, index) => {
                 const Icon = card.icon
                 return (
-                  <article key={card.id} className="flex min-h-[210px] flex-col rounded-xl bg-white p-[25px] shadow-[0_4px_18px_rgba(15,31,63,0.06)] ring-1 ring-black/[0.04]">
+                  <motion.article
+                    key={card.id}
+                    {...slideIn(index)}
+                    className="flex min-h-[210px] flex-col rounded-xl bg-white p-[25px] shadow-[0_4px_18px_rgba(15,31,63,0.06)] ring-1 ring-black/[0.04]"
+                  >
                     <span className="flex h-[42px] w-[42px] items-center justify-center rounded-[10px] bg-[#E8F0FF] text-[#0B55F5]">
                       <Icon className="h-6 w-6" strokeWidth={1.6} />
                     </span>
@@ -124,13 +122,14 @@ export default function Home() {
                     >
                       <ArrowRight className="h-[18px] w-[18px]" />
                     </Link>
-                  </article>
+                  </motion.article>
                 )
               })}
             </div>
 
             {/* image panel bleeds to the viewport's right edge */}
-            <div
+            <motion.div
+              {...fadeRight}
               className="relative hidden h-[238px] self-start xl:block"
               style={{ marginRight: 'calc(-1 * ((100vw - min(100vw, 80rem)) / 2 + 2rem))' }}
             >
@@ -155,16 +154,16 @@ export default function Home() {
                   <p className="mt-5 max-w-[150px] text-[15px] font-semibold leading-[1.25]">Your Trusted Partner in Electrical Solutions</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* mobile / tablet version of the panel */}
-            <div className="relative overflow-hidden rounded-2xl xl:hidden">
+            <motion.div {...fadeRight} className="relative overflow-hidden rounded-2xl xl:hidden">
               <img src="/assets/services-panels.jpg" alt="Low-voltage panels" className="h-56 w-full object-cover" />
               <div className="absolute bottom-4 right-4 flex items-center gap-3 rounded-xl bg-[#0A5BE0] p-4 text-white">
                 <PanelBolt className="h-8 w-8" />
                 <p className="max-w-[160px] text-sm font-semibold leading-tight">Your Trusted Partner in Electrical Solutions</p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -176,7 +175,7 @@ export default function Home() {
           subtitle="Excellence in production of low-voltage panels with a commitment to quality, reliability, and safe electrical management."
         />
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          <motion.article {...fadeUp} className="card overflow-hidden">
+          <motion.article {...fadeLeft} className="card overflow-hidden">
             <div className="relative aspect-[16/10] overflow-hidden">
               <img src="/assets/images/about-1.jpg" alt="Power Pro panels" className="h-full w-full object-cover" loading="lazy" />
             </div>
@@ -195,7 +194,7 @@ export default function Home() {
               <Link to="/about" className="text-sm font-semibold text-brand-primary hover:text-brand-primaryHover">Learn more →</Link>
             </div>
           </motion.article>
-          <motion.article {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.05 }} className="card overflow-hidden">
+          <motion.article {...fadeUp} className="card overflow-hidden">
             <div className="relative aspect-[16/10] overflow-hidden">
               <img src="/assets/images/vision-1.jpg" alt="Innovation in electrical solutions" className="h-full w-full object-cover" loading="lazy" />
             </div>
@@ -209,7 +208,7 @@ export default function Home() {
               <Link to="/about" className="text-sm font-semibold text-brand-primary hover:text-brand-primaryHover">Learn more →</Link>
             </div>
           </motion.article>
-          <motion.article {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }} className="card overflow-hidden">
+          <motion.article {...fadeRight} className="card overflow-hidden">
             <div className="relative aspect-[16/10] overflow-hidden">
               <img src="/assets/images/mission-1.jpg" alt="Our mission" className="h-full w-full object-cover" loading="lazy" />
             </div>
@@ -229,10 +228,10 @@ export default function Home() {
 
       <Section className="pt-0">
         <div className="grid gap-8 overflow-hidden rounded-2xl bg-brand-navy lg:grid-cols-2 lg:items-center">
-          <div className="relative h-full min-h-[280px]">
+          <motion.div {...fadeLeft} className="relative h-full min-h-[280px]">
             <img src="/assets/images/service-centre.jpg" alt="Power Pro service centre" className="h-full w-full object-cover" loading="lazy" />
-          </div>
-          <div className="flex flex-col gap-6 p-8 text-white sm:p-10 lg:p-12">
+          </motion.div>
+          <motion.div {...fadeRight} className="flex flex-col gap-6 p-8 text-white sm:p-10 lg:p-12">
             <div>
               <span className="text-sm font-semibold uppercase tracking-[0.3em] text-white/70">Services Centre</span>
               <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">For low and medium voltage panel maintenance and installations</h2>
@@ -243,19 +242,25 @@ export default function Home() {
             <div>
               <Link to="/services" className="btn-primary">Learn More</Link>
             </div>
-          </div>
+          </motion.div>
         </div>
       </Section>
 
       <Section className="pt-0">
         <SectionHeading eyebrow="Our Products" title="Product Portfolio" subtitle="Real product imagery from the reference site." />
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {products.slice(0, 4).map((product) => (
-            <Link key={product.id} to={product.href} className="group overflow-hidden rounded-2xl shadow-card ring-1 ring-black/5">
-              <div className="relative aspect-[4/5] overflow-hidden">
-                <img src={product.image} alt="Power Pro product" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-              </div>
-            </Link>
+          {products.slice(0, 4).map((product, index) => (
+            <motion.div
+              key={product.id}
+              {...slideIn(index, 4)}
+              className="overflow-hidden rounded-2xl shadow-card ring-1 ring-black/5"
+            >
+              <Link to={product.href} className="group block">
+                <div className="relative aspect-[4/5] overflow-hidden">
+                  <img src={product.image} alt="Power Pro product" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                </div>
+              </Link>
+            </motion.div>
           ))}
         </div>
         <div className="mt-8 text-center">
@@ -265,7 +270,7 @@ export default function Home() {
 
       <Section className="pt-0">
         <div className="grid gap-8 lg:grid-cols-2">
-          <div>
+          <motion.div {...fadeLeft}>
             <span className="section-eyebrow">Contact</span>
             <h2 className="mt-2 font-display text-3xl font-bold text-brand-navy sm:text-4xl">Get In Touch</h2>
             <p className="mt-4 text-lg text-text-secondary">
@@ -278,8 +283,8 @@ export default function Home() {
               <p><strong className="text-brand-navy">Hours:</strong> {siteInfo.hours}</p>
             </div>
             <Link to="/contact" className="btn-primary mt-6">Contact Us</Link>
-          </div>
-          <div className="overflow-hidden rounded-2xl shadow-card ring-1 ring-black/5">
+          </motion.div>
+          <motion.div {...fadeRight} className="overflow-hidden rounded-2xl shadow-card ring-1 ring-black/5">
             <iframe
               title="Power Pro location"
               src={siteInfo.mapEmbed}
@@ -290,7 +295,7 @@ export default function Home() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
-          </div>
+          </motion.div>
         </div>
       </Section>
     </>

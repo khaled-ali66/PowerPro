@@ -7,6 +7,7 @@ import { motion } from 'framer-motion'
 import { Section } from '../components/ui/Section'
 import { siteInfo } from '../data/site'
 import { Mail, MapPin, Phone, Clock } from 'lucide-react'
+import { fadeLeft, fadeRight } from '../lib/motion'
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Please enter your full name'),
@@ -15,13 +16,6 @@ const contactSchema = z.object({
   subject: z.string().min(3, 'Please enter a subject'),
   message: z.string().min(10, 'Please enter a message (at least 10 characters)'),
 })
-
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: '-60px' },
-  transition: { duration: 0.6, ease: [0.25, 0.8, 0.25, 1] },
-}
 
 export default function Contact() {
   const [status, setStatus] = useState('idle')
@@ -68,7 +62,7 @@ export default function Contact() {
               We will be happy to answer your questions. Use the form below or reach us directly via the details provided.
             </p>
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              <motion.div {...fadeUp} className="card p-6">
+              <motion.div {...fadeLeft} className="card p-6">
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-sky/70 text-brand-primary">
                     <Phone className="h-5 w-5" />
@@ -79,7 +73,7 @@ export default function Contact() {
                   </div>
                 </div>
               </motion.div>
-              <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.05 }} className="card p-6">
+              <motion.div {...fadeRight} className="card p-6">
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-sky/70 text-brand-primary">
                     <Mail className="h-5 w-5" />
@@ -90,7 +84,7 @@ export default function Contact() {
                   </div>
                 </div>
               </motion.div>
-              <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.1 }} className="card p-6 sm:col-span-2">
+              <motion.div {...fadeLeft} className="card p-6 sm:col-span-2">
                 <div className="flex items-start gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-sky/70 text-brand-primary">
                     <MapPin className="h-5 w-5" />
@@ -101,7 +95,7 @@ export default function Contact() {
                   </div>
                 </div>
               </motion.div>
-              <motion.div {...fadeUp} transition={{ ...fadeUp.transition, delay: 0.15 }} className="card p-6 sm:col-span-2">
+              <motion.div {...fadeRight} className="card p-6 sm:col-span-2">
                 <div className="flex items-start gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-sky/70 text-brand-primary">
                     <Clock className="h-5 w-5" />
@@ -114,7 +108,7 @@ export default function Contact() {
               </motion.div>
             </div>
           </div>
-          <motion.div {...fadeUp} className="card h-fit p-6 sm:p-8">
+          <motion.div {...fadeRight} className="card h-fit p-6 sm:p-8">
             <h2 className="font-display text-2xl font-semibold text-brand-navy">Send us a message</h2>
             <p className="mt-2 text-text-secondary">Form validation is enabled. This form is prepared for backend integration.</p>
             <form className="mt-6 grid gap-4" onSubmit={handleSubmit(onSubmit)} noValidate>
