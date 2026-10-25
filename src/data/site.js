@@ -2,7 +2,7 @@ export const siteInfo = {
   name: 'Power Pro Technology Electric',
   shortName: 'Power Pro',
   description: 'Power Pro Technology Electric excels in the production of low-voltage panels, ensuring top-notch quality and reliability for safe electrical management.',
-  logo: '/assets/logo.png',
+  logo: '/assets/Power Pro Technology Electric Logo.png',
   address: 'Al-Oula Industrial Park - Developers area Plot 12 - 6 October City - Giza - Egypt',
   phones: ['0108 050 0008', '0155 225 5100', '0150 120 9120'],
   phoneDisplay: '0108 050 0008 - 0155 225 5100 - 0150 120 9120',
