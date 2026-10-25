@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -54,7 +55,7 @@ export default function Contact() {
       <Section className="pt-10">
         <nav className="text-sm text-text-muted">
           <ol className="flex flex-wrap items-center gap-2">
-            <li><a href="/" className="hover:text-brand-primary">Home</a></li>
+            <li><Link to="/" className="hover:text-brand-primary">Home</Link></li>
             <li>/</li>
             <li className="text-text-primary">Contact</li>
           </ol>
