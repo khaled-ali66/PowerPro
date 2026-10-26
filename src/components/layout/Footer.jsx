@@ -61,10 +61,25 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="container-custom flex flex-col items-center justify-between gap-3 py-4 text-sm text-white/60 sm:flex-row">
-          <p>© {new Date().getFullYear()} {siteInfo.shortName}. All rights reserved.</p>
-          <p>Design & Developed by Digital Mas Agency</p>
-        </div>
+       
+<div className="container-custom flex flex-col items-center justify-between gap-3 py-4 text-sm text-white/60 sm:flex-row">
+  <p>
+    © {new Date().getFullYear()} {siteInfo.shortName}. All rights reserved.
+  </p>
+
+  <p>
+    Designed & Developed by{" "}
+    <a
+      href="https://uxcode2026.vercel.app"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-white transition-colors hover:text-orange-400"
+    >
+      UXCode
+    </a>
+  </p>
+</div>
+
       </div>
     </footer>
   )
