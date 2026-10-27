@@ -8,9 +8,13 @@
 
 html {
   scroll-behavior: smooth;
+  width: 100%;
+  overflow-x: clip; /* الصفحة متعرضش أوسع من الشاشة على الموبايل */
 }
 
 body {
+  width: 100%;
+  overflow-x: clip;
   @apply bg-white text-text-primary font-sans antialiased;
 }
 
