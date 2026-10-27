@@ -7,9 +7,11 @@ import Products from '../pages/Products'
 import ProductDetail from '../pages/ProductDetail'
 import Contact from '../pages/Contact'
 import NotFound from '../pages/NotFound'
+import Splash from '../components/ui/Splash'
 
 export default function App() {
   return (
+    <Splash>
     <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -21,5 +23,6 @@ export default function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>
+    </Splash>
   )
 }

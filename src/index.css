@@ -58,3 +58,20 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* ===== Splash / Loading ring ===== */
+@keyframes splash-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes splash-dash {
+  0%   { stroke-dasharray: 20 270;  stroke-dashoffset: 0; }
+  50%  { stroke-dasharray: 150 140; stroke-dashoffset: -60; }
+  100% { stroke-dasharray: 20 270;  stroke-dashoffset: -289; }
+}
+@keyframes splash-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(0.9); }
+  50%      { opacity: 1;   transform: scale(1.1); }
+}
+.splash-arc   { animation: splash-dash 1.8s ease-in-out infinite; }
+.splash-orbit { animation: splash-spin 1.8s linear infinite; }
+.splash-glow  { animation: splash-pulse 2s ease-in-out infinite; }
